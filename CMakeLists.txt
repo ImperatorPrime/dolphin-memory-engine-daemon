@@ -3,8 +3,10 @@ project(dolphin_memory_engine_daemon)
 
 set(CMAKE_CXX_STANDARD 20)
 
+add_subdirectory(external/dolphin-memory-engine/Source)
+
 add_executable(dolphin_memory_engine_daemon
-        src/daemon/main.cpp
         src/daemon/main.cpp)
 
 
+target_link_libraries(dolphin_memory_engine_daemon PRIVATE dolphin-memory-engine)
