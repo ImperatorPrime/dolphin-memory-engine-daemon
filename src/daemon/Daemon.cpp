@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <sys/capability.h>
 
 using boost::asio::ip::tcp;
 
@@ -9,8 +10,13 @@ Daemon::Daemon(boost::asio::io_context &io_context)  : acceptor_(io_context), si
 }
 
 void Daemon::start() {
-    if (const uid_t effectiveUid = geteuid(); false && effectiveUid != 0) {
-        std::cout << "This program must be run as root" << std::endl;
+    cap_t caps = cap_get_proc();
+    cap_flag_value_t value = CAP_CLEAR;
+    cap_get_flag(caps, CAP_SYS_PTRACE, CAP_EFFECTIVE, &value);
+    cap_free(caps);
+
+    if (value != CAP_SET) {
+        std::cerr << "This program requires CAP_SYS_PTRACE" << std::endl;
         return;
     }
 

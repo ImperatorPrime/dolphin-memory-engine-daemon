@@ -1,0 +1,29 @@
+[Unit]
+Description=Dolphin Memory Engine Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/dolphin_memory_engine_daemon
+Restart=on-failure
+RestartSec=5
+
+DynamicUser=yes
+AmbientCapabilities=CAP_SYS_PTRACE
+CapabilityBoundingSet=CAP_SYS_PTRACE
+
+# Harden the service
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+
+[Install]
+WantedBy=multi-user.target
