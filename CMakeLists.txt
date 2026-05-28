@@ -42,5 +42,5 @@ endif()
 
 add_subdirectory(external/dolphin-memory-engine/Source)
 
-target_link_libraries(dolphin_memory_engine_daemon PRIVATE dolphin-memory-engine)
+target_link_libraries(dolphin_memory_engine_daemon PRIVATE dolphin-memory-engine cap)
 
