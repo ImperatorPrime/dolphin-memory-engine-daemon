@@ -3,7 +3,7 @@ Description=Dolphin Memory Engine Daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/dolphin_memory_engine_daemon
+ExecStart=/usr/bin/dolphin_memory_engine_daemon
 Restart=on-failure
 RestartSec=5
 
