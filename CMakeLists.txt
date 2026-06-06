@@ -56,7 +56,7 @@ set(CPACK_PACKAGE_VERSION ${PACKAGE_VERSION})
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Dolphin Memory Engine Daemon")
 set(CPACK_PACKAGE_DESCRIPTION "A daemon for running dolphin in randovania as a nintendont connection")
 set(CPACK_PACKAGE_CONTACT "ndbrandes@gmail.com")
-set(CPACK_PACKAGING_INSTALL_PREFIX "/")
+set(CPACK_PACKAGING_INSTALL_PREFIX "/usr")
 set(CPACK_STRIP_FILES TRUE)
 
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcap2")
