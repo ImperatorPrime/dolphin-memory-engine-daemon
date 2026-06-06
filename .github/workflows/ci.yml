@@ -58,8 +58,42 @@ jobs:
             build/*.rpm
             build/*.tar.gz
 
-  release:
+  test-deb:
     needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: packages
+          path: packages
+
+      - name: Test DEB installation
+        run: |
+          cp packages/*.deb docker/test-deb/package.deb
+          docker build docker/test-deb/
+
+  test-rpm:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: packages
+          path: packages
+
+      - name: Test RPM installation
+        run: |
+          cp packages/*.rpm docker/test-rpm/package.rpm
+          docker build docker/test-rpm/
+
+  release:
+    needs: [build, test-deb, test-rpm]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     permissions:
