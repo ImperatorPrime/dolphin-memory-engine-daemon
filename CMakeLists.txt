@@ -44,9 +44,11 @@ add_subdirectory(external/dolphin-memory-engine/Source)
 
 target_link_libraries(dolphin_memory_engine_daemon PRIVATE dolphin-memory-engine cap)
 
+include(GNUInstallDirs)
+
 set(PACKAGE_VERSION "0.0.0" CACHE STRING "Package version")
 
-install(TARGETS dolphin_memory_engine_daemon RUNTIME DESTINATION usr/bin)
+install(TARGETS dolphin_memory_engine_daemon RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES dist/dolphin-memory-engine-daemon.service DESTINATION lib/systemd/system)
 
 set(CPACK_PACKAGE_NAME "dolphin-memory-engine-daemon")
