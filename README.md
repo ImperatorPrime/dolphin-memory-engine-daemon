@@ -34,6 +34,35 @@ sudo ./install.sh
 
 The install script must be run as root as it installs files to `/usr/bin` and `/lib/systemd/system`. It will start the daemon immediately and prompt you to enable it on boot.
 
+## Running
+
+If the daemon is not already running, start it:
+
+```bash
+sudo systemctl start dolphin-memory-engine-daemon
+```
+
+Then in Randovania, open a new game connection, add a new Nintendont connection, and enter `127.0.0.1` as the IP address.
+
+Other useful commands:
+
+```bash
+# Stop
+sudo systemctl stop dolphin-memory-engine-daemon
+
+# Enable on boot
+sudo systemctl enable dolphin-memory-engine-daemon
+
+# Disable on boot
+sudo systemctl disable dolphin-memory-engine-daemon
+
+# Check status
+systemctl status dolphin-memory-engine-daemon
+
+# View logs
+journalctl -u dolphin-memory-engine-daemon
+```
+
 ## Building from Source
 
 ### Dependencies
