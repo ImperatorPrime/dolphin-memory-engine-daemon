@@ -44,3 +44,26 @@ add_subdirectory(external/dolphin-memory-engine/Source)
 
 target_link_libraries(dolphin_memory_engine_daemon PRIVATE dolphin-memory-engine cap)
 
+set(PACKAGE_VERSION "0.0.0" CACHE STRING "Package version")
+
+install(TARGETS dolphin_memory_engine_daemon RUNTIME DESTINATION usr/bin)
+install(FILES dist/dolphin-memory-engine-daemon.service DESTINATION lib/systemd/system)
+
+set(CPACK_PACKAGE_NAME "dolphin-memory-engine-daemon")
+set(CPACK_PACKAGE_VERSION ${PACKAGE_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Dolphin Memory Engine Daemon")
+set(CPACK_PACKAGE_DESCRIPTION "A daemon for running dolphin in randovania as a nintendont connection")
+set(CPACK_PACKAGE_CONTACT "ndbrandes@gmail.com")
+set(CPACK_PACKAGING_INSTALL_PREFIX "/")
+set(CPACK_STRIP_FILES TRUE)
+
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libcap2")
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_SOURCE_DIR}/dist/deb/postinst")
+
+set(CPACK_RPM_PACKAGE_REQUIRES "libcap")
+set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
+set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE "${CMAKE_CURRENT_SOURCE_DIR}/dist/rpm/postinst.sh")
+
+include(CPack)
+
