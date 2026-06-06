@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 4.3)
+cmake_minimum_required(VERSION 3.15)
 project(dolphin_memory_engine_daemon)
 
 set(CMAKE_CXX_STANDARD 20)
